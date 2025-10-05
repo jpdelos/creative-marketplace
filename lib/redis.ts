@@ -59,10 +59,5 @@ class MockRedis {
   }
 }
 
-// Use mock for development, real Redis for production
-export const redis = process.env.NODE_ENV === 'development' || !process.env.KV_REST_API_URL
-  ? new MockRedis() as any
-  : new Redis({
-      url: process.env.KV_REST_API_URL,
-      token: process.env.KV_REST_API_TOKEN
-    });
+// Always use mock for now - no Redis required
+export const redis = new MockRedis() as any;
