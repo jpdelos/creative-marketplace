@@ -37,9 +37,9 @@ type SubdomainData = {
 
 export async function getSubdomainData(subdomain: string) {
   const sanitizedSubdomain = subdomain.toLowerCase().replace(/[^a-z0-9-]/g, '');
-  const data = await redis.get<SubdomainData>(
+  const data = await redis.get(
     `subdomain:${sanitizedSubdomain}`
-  );
+  ) as SubdomainData | null;
   return data;
 }
 
@@ -50,9 +50,9 @@ export async function getAllSubdomains() {
     return [];
   }
 
-  const values = await redis.mget<SubdomainData[]>(...keys);
+  const values = await redis.mget(...keys) as SubdomainData[];
 
-  return keys.map((key, index) => {
+  return keys.map((key: string, index: number) => {
     const subdomain = key.replace('subdomain:', '');
     const data = values[index];
 
