@@ -105,7 +105,9 @@ Create an Upstash Redis database:
 
 ### 2. Deploy to Vercel
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fjpdelos%2Fcreative-marketplace-platforms&env=KV_REST_API_URL,KV_REST_API_TOKEN&envDescription=Upstash%20Redis%20credentials%20required%20for%20tenant%20data%20storage&project-name=creative-marketplace-platforms&repository-name=creative-marketplace-platforms)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fjpdelos%2Fcreative-marketplace-platforms&project-name=creative-marketplace-platforms&repository-name=creative-marketplace-platforms)
+
+**🚀 IMPORTANT**: Make sure to connect Vercel to the `jpdelos/creative-marketplace-platforms` repository, not any old repositories.
 
 Or manually:
 1. Import the repository in Vercel
