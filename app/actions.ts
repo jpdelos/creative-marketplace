@@ -12,6 +12,10 @@ export async function createSubdomainAction(
 ) {
   const subdomain = formData.get('subdomain') as string;
   const icon = formData.get('icon') as string;
+  const name = formData.get('name') as string;
+  const description = formData.get('description') as string;
+  const category = formData.get('category') as string;
+  const location = formData.get('location') as string;
 
   if (!subdomain || !icon) {
     return { success: false, error: 'Subdomain and icon are required' };
@@ -52,7 +56,11 @@ export async function createSubdomainAction(
 
   await redis.set(`subdomain:${sanitizedSubdomain}`, {
     emoji: icon,
-    createdAt: Date.now()
+    createdAt: Date.now(),
+    name: name || '',
+    description: description || '',
+    category: category || '',
+    location: location || ''
   });
 
   redirect(`${protocol}://${sanitizedSubdomain}.${rootDomain}`);

@@ -133,17 +133,87 @@ export function SubdomainForm() {
   );
 
   return (
-    <form action={action} className="space-y-4">
+    <form action={action} className="space-y-6">
       <SubdomainInput defaultValue={state?.subdomain} />
 
       <IconPicker icon={icon} setIcon={setIcon} defaultValue={state?.icon} />
+
+      <div className="space-y-2">
+        <Label htmlFor="name">Marketplace Name</Label>
+        <Input
+          id="name"
+          name="name"
+          placeholder="Your Creative Studio"
+          className="w-full"
+        />
+        <p className="text-xs text-gray-500">
+          Display name for your marketplace
+        </p>
+      </div>
+
+      <div className="space-y-2">
+        <Label htmlFor="description">Description</Label>
+        <Input
+          id="description"
+          name="description"
+          placeholder="Beautiful handmade pottery and ceramics workshops"
+          className="w-full"
+        />
+        <p className="text-xs text-gray-500">
+          Brief description of your marketplace
+        </p>
+      </div>
+
+      <div className="space-y-2">
+        <Label htmlFor="category">Specialization</Label>
+        <select
+          id="category"
+          name="category"
+          className="w-full px-3 py-2 border border-input rounded-md bg-background"
+        >
+          <option value="">All Creative Experiences</option>
+          <option value="Cerámica">Ceramics & Pottery</option>
+          <option value="Pintura">Painting & Drawing</option>
+          <option value="Arte">General Arts & Crafts</option>
+        </select>
+        <p className="text-xs text-gray-500">
+          Optional: Focus on specific types of experiences
+        </p>
+      </div>
+
+      <div className="space-y-2">
+        <Label htmlFor="location">Location</Label>
+        <Input
+          id="location"
+          name="location"
+          placeholder="Barcelona, Spain"
+          className="w-full"
+        />
+        <p className="text-xs text-gray-500">
+          City or region for your marketplace
+        </p>
+      </div>
 
       {state?.error && (
         <div className="text-sm text-red-500">{state.error}</div>
       )}
 
+      {state?.success && (
+        <div className="text-sm text-green-600 p-3 bg-green-50 rounded-md">
+          Success! Your marketplace is ready at{' '}
+          <a
+            href={`http://${state.subdomain}.localhost:3000`}
+            className="font-semibold hover:underline"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {state.subdomain}.localhost:3000
+          </a>
+        </div>
+      )}
+
       <Button type="submit" className="w-full" disabled={isPending || !icon}>
-        {isPending ? 'Creating...' : 'Create Subdomain'}
+        {isPending ? 'Creating Marketplace...' : 'Create Marketplace'}
       </Button>
     </form>
   );
