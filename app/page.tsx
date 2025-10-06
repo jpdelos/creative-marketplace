@@ -1,4 +1,5 @@
 import { getExperiences, getExperienceImage } from '@/lib/experiences-api';
+import { BookingButton } from '@/components/booking-button';
 
 export default async function HomePage() {
   // Get experiences data
@@ -81,9 +82,11 @@ export default async function HomePage() {
                       </span>
                     </div>
 
-                    <div className="text-sm text-gray-600">
+                    <div className="text-sm text-gray-600 mb-4">
                       📍 {experience.city} • {experience.shop_name}
                     </div>
+
+                    <BookingButton experience={experience} />
                   </div>
                 </div>
               ))}
